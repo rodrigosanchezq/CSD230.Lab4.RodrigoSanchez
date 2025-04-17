@@ -2,20 +2,26 @@ package csd230.lab2.controllers;
 
 import csd230.lab2.entities.Ticket;
 import csd230.lab2.respositories.TicketRepository;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Controller
+@RequestMapping("/tickets")
 public class TicketController {
 
     private final TicketRepository ticketRepository;
 
     public TicketController(TicketRepository ticketRepository) {
         this.ticketRepository = ticketRepository;
+    }
+
+    @GetMapping
+    public String tickets(Model model) {
+        model.addAttribute("tickets", ticketRepository.findAll());
+        return "tickets";
     }
 
     @GetMapping("/add-ticket")
