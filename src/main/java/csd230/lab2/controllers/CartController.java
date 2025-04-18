@@ -1,6 +1,7 @@
 package csd230.lab2.controllers;
 
 import csd230.lab2.entities.Cart;
+import csd230.lab2.entities.CartItem;
 import csd230.lab2.respositories.CartItemRepository;
 import csd230.lab2.respositories.CartRepository;
 import org.springframework.stereotype.Controller;
@@ -69,7 +70,14 @@ public class CartController {
             Cart cart = cartRepository.findById(id);
             cartRepository.delete(cart);
         }
-
         return "redirect:/cart";
+    }
+
+    @GetMapping("/checkout")
+    public String checkout(@PathVariable Integer id, Model model) {
+        Cart cart = cartRepository.findById(id);
+        model.addAttribute("items", cart.getItems());
+        model.addAttribute("total", cart.getItems().stream().mapToDouble(CartItem::getPrice).sum());
+        return "checkout";
     }
 }

@@ -3,8 +3,10 @@ package csd230.lab2.entities;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
+import java.util.Date;
+
 @Entity
-public class DiscMag extends Publication {
+public class DiscMag extends Magazine {
     @Column(name = "has_disc", nullable = true)
     private boolean hasDisc;
 
@@ -23,4 +25,6 @@ public class DiscMag extends Publication {
     public DiscMag(boolean hasDisc) {
         this.hasDisc = hasDisc;
     }
+
+    public DiscMag(double price, String title, int copies, int orderQty, Date currIssue, boolean hasDisc) {}
 }

@@ -9,7 +9,7 @@
     <h1>Welcome to Simple E-Commerce</h1>
     <nav>
         <a href="/">Home</a>
-        <a href="/magazines">Magazines</a>
+        <a href="/discMags">Disc Mag</a>
         <a href="/cart">Cart</a>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out"/>
@@ -18,12 +18,16 @@
 </header>
 
 <main>
-    <h1>Add a new magazine</h1>
-    <form action="#" th:action="@{/magazines/add-magazine}" th:object="${magazine}" method="post">
+    <h1>Add a new disc magazine</h1>
+    <form action="#" th:action="@{/discMags/add-disc-mag}" th:object="${discMag}" method="post">
         <table border="1" cellpadding="5" cellspacing="0">
             <tr>
                 <td>Title</td>
                 <td><input type="text" th:field="*{title}"/></td>
+            </tr>
+            <tr>
+                <td>Has disc?</td>
+                <td><input type="checkbox" th:field="*{hasDisc}"/></td>
             </tr>
             <tr>
                 <td>Price</td>
