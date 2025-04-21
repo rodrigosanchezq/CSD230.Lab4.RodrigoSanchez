@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Spring Security Example </title>
+    <link href="/styles/main.css" rel="stylesheet"/>
 </head>
 <body>
+<h1>Log In Page!</h1>
+
 <div th:if="${param.error}">
     Invalid username and password.
 </div>
@@ -12,8 +16,8 @@
 </div>
 <p>--------------------------------------------------------</p>
 <h2>credentials are configured in WebsecurityConfig.java</h2>
-<p style="font-size: 1.2em">username: user</p>
-<p style="font-size: 1.2em">password: password</p>
+<p style="font-size: 1.2em">username: Rodrigo</p>
+<p style="font-size: 1.2em">password: secretword</p>
 <p>--------------------------------------------------------</p>
 <form th:action="@{/login}" method="post">
     <div><label> User Name : <input type="text" name="username"/> </label></div>

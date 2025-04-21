@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+
+// This configuration class sets up basic security for the application.
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
@@ -35,8 +37,8 @@ public class WebSecurityConfig {
     public UserDetailsService userDetailsService() {
         UserDetails user =
                 User.withDefaultPasswordEncoder()
-                        .username("user")
-                        .password("password")
+                        .username("Rodrigo")
+                        .password("secretword")
                         .roles("USER")
                         .build();
 
