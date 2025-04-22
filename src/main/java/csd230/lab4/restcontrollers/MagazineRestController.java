@@ -24,9 +24,7 @@ public class MagazineRestController {
     // For example, you can add methods to get all magazines, get a magazine by ID,
     // create a new magazine, update an existing magazine, and delete a magazine.
     // Example method to get all magazines
-//    @GetMapping
-//    public List<Magazine> getAllMagazines() {
-//        return magazineRepository.findAll();
+
 
     @Operation(summary = "Get a magazine by ID")
     @ApiResponses(value = {
