@@ -19,49 +19,49 @@ public class BookRestController {
     public BookRestController(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
-
-    @CrossOrigin
-    @GetMapping()
-    List<Book> all() {
-        List<Book> all = (List<Book>) bookRepository.findAll();
-        return all;
-    }
-
-    @GetMapping
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-    public Book getBook(@PathVariable int id) {
-        Book book = bookRepository.findById(id);
-        return book;
-    }
-
-    @PostMapping()
-    Book newBook(@RequestBody Book newBook) {
-        return bookRepository.save(newBook);
-    }
-
-    @PutMapping("/{id}")
-    Book replaceBook(@RequestBody Book newBook, @PathVariable Long id) {
-
-        return bookRepository.findById(id)
-                .map(book -> {
-                    book.setAuthor(newBook.getAuthor());
-                    book.setIsbn(newBook.getIsbn());
-                    book.setCopies(newBook.getCopies());
-                    book.setDescription(newBook.getDescription());
-                    book.setPrice(newBook.getPrice());
-                    book.setTitle(newBook.getTitle());
-                    book.setQuantity(newBook.getQuantity());
-
-                    return bookRepository.save(book);
-                })
-                .orElseGet(() -> {
-                    return bookRepository.save(newBook);
-                });
-    }
-    @DeleteMapping("/{id}")
-    void delBook(@PathVariable Long id) {
-        bookRepository.deleteById(id);
-    }
+//
+//    @CrossOrigin
+//    @GetMapping()
+//    List<Book> all() {
+//        List<Book> all = (List<Book>) bookRepository.findAll();
+//        return all;
+//    }
+//
+//    @GetMapping
+//    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+//    public Book getBook(@PathVariable int id) {
+//        Book book = bookRepository.findById(id);
+//        return book;
+//    }
+//
+//    @PostMapping("/new-book")
+//    Book newBook(@RequestBody Book newBook) {
+//        return bookRepository.save(newBook);
+//    }
+//
+//    @PutMapping("/{id}")
+//    Book replaceBook(@RequestBody Book newBook, @PathVariable Long id) {
+//
+//        return bookRepository.findById(id)
+//                .map(book -> {
+//                    book.setAuthor(newBook.getAuthor());
+//                    book.setIsbn(newBook.getIsbn());
+//                    book.setCopies(newBook.getCopies());
+//                    book.setDescription(newBook.getDescription());
+//                    book.setPrice(newBook.getPrice());
+//                    book.setTitle(newBook.getTitle());
+//                    book.setQuantity(newBook.getQuantity());
+//
+//                    return bookRepository.save(book);
+//                })
+//                .orElseGet(() -> {
+//                    return bookRepository.save(newBook);
+//                });
+//    }
+//    @DeleteMapping("/delete/{id}")
+//    void delBook(@PathVariable Long id) {
+//        bookRepository.deleteById(id);
+//    }
 
     @Operation(summary = "Get a book by ID")
     @ApiResponses(value = {
@@ -107,7 +107,7 @@ public class BookRestController {
             @ApiResponse(responseCode = "200", description = "Book updated"),
             @ApiResponse(responseCode = "404", description = "Book not found")
     })
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book book) {
         return bookRepository.findById(id)
                 .map(existingBook -> {
